@@ -4,18 +4,15 @@ Questo progetto ha come scopo quello di fornire un boilerplate per lo sviluppo d
 
 Se hai già installato Docker e Docker Compose ed hai già confidenza con questo strumento puoi semplicemente seguire questi step:
 
-Scarica il progetto da github (pull o zip). 
-<pre><code>
-git pull git@github.com:pasqualepalmaccio/wordpress-docker.git
-</code></pre>
+1. Scarica il progetto da github (pull o zip). 
 
-Apri un terminale nella cartella del progetto oppure aggiungi il progetto al tuo IDE preferito e avvia un terminale. Esegui nel terminale il comando 
+2. Apri un terminale nella cartella del progetto oppure aggiungi il progetto al tuo IDE preferito e avvia un terminale. Esegui nel terminale il comando 
 
 <pre><code>
 docker-compose up -d -build
 </code></pre>
 
-Visita le pagine: 
+3. Visita le pagine: 
 
 <pre><code>
 localhost #per aviare l'installazione di WordPress
