@@ -15,7 +15,7 @@ docker-compose up -d -build
 3. Visita le pagine: 
 
 <pre><code>
-localhost #per aviare l'installazione di WordPress
+localhost #per avviare l'installazione di WordPress
 localhost:8890 #se vuoi consultare il database tramite phpmyadmin
 </code></pre>
 
