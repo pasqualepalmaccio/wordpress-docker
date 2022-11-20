@@ -9,7 +9,7 @@ Se hai già installato Docker e Docker Compose ed hai già confidenza con questo
 2. Apri un terminale nella cartella del progetto oppure aggiungi il progetto al tuo IDE preferito e avvia un terminale. Esegui nel terminale il comando 
 
 <pre><code>
-docker-compose up -d -build
+docker-compose up -d --build
 </code></pre>
 
 3. Visita le pagine: 
