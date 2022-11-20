@@ -66,9 +66,10 @@ services:
       - db
 
   wordpress:
+    build:
+      context: ./config/wordpress
     depends_on:
       - db
-    image: wordpress:latest
     ports:
       - "80:80"
     restart: always
