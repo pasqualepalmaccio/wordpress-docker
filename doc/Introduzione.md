@@ -1,14 +1,15 @@
 # Documentazione Wordpress + Docker in localhost
 
-Questo semplice file yaml contiene il necessario per avviare lo sviluppo di un sito wordpress in locale tramite Docker. Per rendere l'ambiente più familiare e confidenziale ho pensato di utilizzare i volumi di docker per avere accesso dalla macchina host ai files di wordpress e al database. 
+Questo file yaml contiene tutto il necessario per avviare lo sviluppo di un sito <b>WordPress</b> in locale tramite <b>Docker</b>. Per rendere l'ambiente più  confidenziale rispetto ai classici MAMP, XAMPP, MAC Ports etc.. ho pensato di utilizzare i volumi di docker per avere accesso dalla macchina host ai files di WordPress e al Database. 
 
-Ho inoltre aggiunto il servizio di phpmyadmin per una facile e confidenziale consultazione del database.
+Ho aggiunto il container di <b>phpmyadmin</b> per una più facile consultazione del database.
 
 ## Installazione di Docker
 
-Per prima cosa dobbiamo installare Docker sul nostro sistema operativo. Per farlo ci sono vari modi e variano in base al proprio sistema operativo. Nel mio caso utilizzo Mac OS quindi ho installato Docker Desktop disponibile al link : https://docs.docker.com/engine/install/ . Una volta configurato Docker sulla macchina host è necessario assicurarsi del funzionamento di Docker Compose.
+Per prima cosa dobbiamo installare Docker sul nostro sistema operativo. 
+Ci sono diversi modi e variano in base al proprio sistema operativo. Nel mio caso utilizzo Mac OS quindi ho installato Docker Desktop disponibile al link : https://docs.docker.com/engine/install/ . Una volta configurato Docker sulla macchina host è necessario assicurarsi del funzionamento di <b>Docker Compose</b>.
 
-Docker integra Docker Compose v2 disponibile nelle impostazioni di Docker Desktop. In alcuni casi potrebbe non funzionare correttamente, in queste circostanze è possibile rimuovere la spunta dalla Docker Compose v2. 
+<em>Docker integra Docker Compose v2 disponibile nelle impostazioni di Docker Desktop. In alcuni casi potrebbe non funzionare correttamente, in queste circostanze è possibile rimuovere la spunta dalla Docker Compose v2.</em>
 
 Per verificare il funzionamento di Docker Compose apriamo un terminale e digitiamo:
 
@@ -20,11 +21,11 @@ Oppure nel caso della v2:
 
 Se l'outpput mostra la versione di Docker Compose significa che siamo pronti per procedere. 
 
-<em>Docker Compose è un tool di docker che, tra le tante funzioni, ci consente di scrivere i nostri servizi docker e le rispettive configurazioni direttamente in un file yaml.</em>
+<code>Docker Compose è un tool di docker che, tra le tante funzioni, ci consente di scrivere i nostri servizi docker e le rispettive configurazioni direttamente in un file yaml.</code>
 
 ## Avvio del nostro stack WordPress
 
-Questa non è una guida approfondita di Docker e del suo funzionamento. Mi limiterò a dire che il nostro obiettivo è quello di far girare i servizi essenziali per avviare una istanza di WordPress funzionante in locale. 
+Questa non è una guida su Docker. Il mio obiettivo è quello di far girare i servizi essenziali per avviare una istanza di WordPress funzionante in locale. 
 
 #### Per i meno esperti...
 Docker è uno strumento che permette la creazione di <em>Containers</em> ovvero di creare istanze di microservizi installando solo le parti di kernel essenziali al funzionamento del microservizio stesso. Questo è ciò che differenzia Docker dai più comuni sistemi di virtualizzazione che richiedono l'installazione dell'intero sistema operativo per il funzionamento di un microservizio. 
@@ -35,13 +36,16 @@ L'avvio del nostro stack possiamo farlo semplicemente con il comando:
 
 <pre><code>docker-compose up -d</code></pre>
 
-Docker in questa fase farà un pull delle immagini dei servizi indicati nel file docker-compose.yaml. 
+<u>Docker in questa fase farà un pull delle immagini dei servizi indicati nel file docker-compose.yaml. se non presenti già nella nostra macchina. </u>
 
-Terminato il download delle immagini avvierà i nostri servizi. 
+Terminato il download delle immagini avvierà lo stack dei containers. 
 
-### I servizi
+Per verificare lo stato dei servizi possiamo lanciare il comando: 
+<pre><code>docker-compose ps</code></pre>
 
-Aprendo con un IDE il file docker-compose.yaml notiamo che sono stati definiti i servizi: 
+### I Containers
+
+Aprendo con un IDE il file docker-compose.yaml notiamo che sono stati definiti i containers: 
 
 <pre><code>
 services:
@@ -73,7 +77,7 @@ services:
 
 </code></pre>
 
-Ritengo abbastanza intuitivo capire cosa sono e a cosa servono. Se hai difficoltà a comprendere il contenuto di questo file ti consiglio di seguire un breve approfondimento di Docker ed in particolare di Docker Compose. 
+Se hai difficoltà a comprendere il contenuto di questo file ti consiglio di seguire un breve approfondimento di Docker.
 
 #### I Volumi
 
@@ -81,7 +85,7 @@ Come accennato ad inizio della documentazione,ho definito una path <em>data</em>
 Se non conosci il funzionamento dei volumi ti consiglio di approfondire sulla doc ufficiale di docker oppure di ignorarlo per questo scopo e fidarti di cosa accade. 
 Una volta avviati i servizi questa path si riempirà dei files di WordPress e del Db. 
 
-Questi files resteranno sincronizzati durante tutto il nostro ciclo di sviluppo tra la macchina host ed i containers che ne fanno uso. Insomma immaginate che quei files sono contemporaneamente nel "container" (servizi docker) e nella vostra macchina e non solo incapsulati nei containers. 
+Questi files resteranno sincronizzati durante tutto il nostro ciclo di sviluppo tra la macchina host ed i containers che ne fanno uso.
 
 ### Accesso dal Browser
 
