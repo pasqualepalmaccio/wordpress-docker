@@ -99,5 +99,18 @@ In corrispondenza della voce server basterà indicare il nome del container : <e
 
 Questo perchè docker crea una network interna tra i servizi raggiungibili tra loro tramite il <em>name</em>.
 
+### Informazioni utili
+
+L'uso dei volumi che quindi espongono i files di wordpress sulla macchina host comporta alcuni vantaggi ai fini dello sviluppo. 
+
+Una volta consluso il processo di installazione di wordpress, è fondamentale non cancellare i files dalla cartella data. Qualora avessi la necessità di rifare tutto cancellando i dati è sufficiente:
+
+<ul>
+<li>Tirare giù i containers di docker con il comando: <em>docker-compose down</em></li>
+<li>Eliminare il contenuto della cartella <em>data</em></li>
+<li>Tirare nuovamente su i containers con il comando: <em>docker-compose up -d</em></li>
+</ul>
+
+
 
 
