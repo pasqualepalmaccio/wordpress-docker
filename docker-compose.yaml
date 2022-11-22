@@ -6,16 +6,13 @@ services:
     volumes:
       - ./data/db:/var/lib/mysql
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+    env_file:
+      - ./.env
 
   phpmyadmin:
     image: phpmyadmin:latest
-    environment:
-     - PMA_ARBITRARY=1
+    env_file:
+      - ./.env
     ports:
       - 8890:80
     links:
@@ -31,7 +28,6 @@ services:
     restart: always
     volumes:
       - ./data/files:/var/www/html
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
+      - ./config/wordpress/php.ini:/usr/local/etc/php/conf.d/php.ini
+    env_file:
+      - ./.env
