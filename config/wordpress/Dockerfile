@@ -1,1 +1,2 @@
-FROM wordpress:latest
+ARG PHP_VERSION
+FROM wordpress:${PHP_VERSION}
