@@ -3,10 +3,10 @@
 #### Approfondimenti
 <ol>
 <li>
-<a href="/Modifica-versione-php.md">Modificare la versione di PHP del progetto</a>
+<a href="./Modifica-versione-php.md">Modificare la versione di PHP del progetto</a>
 </li>
 <li>
-<a href="/Variabili-ambiente.md">Gestire le variabili d'ambiente</a>
+<a href="./Variabili-ambiente.md">Gestire le variabili d'ambiente</a>
 </li>
 </ol>
 
