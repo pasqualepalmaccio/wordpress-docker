@@ -5,7 +5,7 @@ Questo progetto contiene tutto il necessario per avviare lo sviluppo di un sito 
 <strong>Docker</strong> è un software che consente di eseguire <em>containers</em>. 
 I containers sono parti di software isolate e minimali. Pensiamo ad un singolo servizio come <em>mysql</em> o <em>php</em> oppure ancora <em>apache</em> o un set di servizi (ad esempio un intero stack LAMP in un singolo container). 
 
-A differenza delle <em>macchine virutali</em>, docker offre numerosi vantaggi tra cui l'esecuzione di un singolo servizio isolato e facilmente distribuibile. 
+A differenza delle <em>macchine virutali</em> docker offre numerosi vantaggi, tra cui l'esecuzione di un singolo servizio isolato e facilmente distribuibile. 
 
 ## Installazione di Docker
 
@@ -26,17 +26,33 @@ Nel caso della v2:
 
 <pre><code>docker compose --version</code></pre>
 
-Se l'outpput mostra la versione di Docker Compose significa che siamo pronti per procedere. 
+Se l'outpput mostra la versione di Docker Compose significa che il sistema è configurato per procedere. 
 
-## Avvio dello stack WordPress
+## Makefile
 
-L'avvio del nostro stack possiamo farlo semplicemente con il comando: 
+Il progetto dispone di un <em>makefile</em> in cui sono definite alcune operazioni per la manipolazione del progetto e dello stack. 
+
+Il makefile è molto utile per facilitare l'esecuzione (automatica) di comandi sequenziali o la cui sintassi è piuttosto complessa da ricordare o da scrivere nel terminale. 
+
+In questo caso sono definiti i comandi:
+
+<b>make start</b>: Avvia i <em>containers</em>. Puoi iniziare a costruire il tuo sito in wordpress da localhost. 
+<b>make stop</b>: Ferma l'esecuzione dei <em>containers</em>.
+<b>make build</b>: Effettua la build dei <em>containers</em>.
+<b>make deploy</b>: Crea nella path <em>/data/deploy</em> un file </em>wp.zip</em> contenente tutti i files di wordpress ed un file <em>wpdb.sql</em> che contiente un dump del database. Questo puo essere utile quando si decide di esportare il pacchetto per caricarlo su un Hosting o un Server reale e pubblicare il sito. 
+
+Apriamo il terminale e digitiamo quindi : 
+<pre><code>make start</code></pre>
+
+## Avvio di containers con Docker senza utilizzare il makefile. 
+
+Se non vuoi utilizzare il makefile con i comandi semplificati puoi sempre usare i comandi di docker per avviare e gestire il progetto.
 
 <pre><code>docker-compose up -d</code></pre>
 
 <u>Docker in questa fase farà un pull delle immagini dei servizi indicati nel file docker-compose.yaml. se non presenti già nella nostra macchina. </u>
 
-Terminato il download delle immagini avvierà lo stack dei containers. 
+Terminato il download delle immagini avvierà i containers. 
 
 Per verificare lo stato dei servizi possiamo lanciare il comando: 
 <pre><code>docker-compose ps</code></pre>

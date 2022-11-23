@@ -6,13 +6,19 @@ Se hai già installato Docker e Docker Compose ed hai già confidenza con questo
 
 1. Scarica il progetto da github (pull o zip). 
 
-2. Apri un terminale nella cartella del progetto oppure aggiungi il progetto al tuo IDE preferito e avvia un terminale. Esegui nel terminale il comando 
+2. Apri un terminale nella cartella del progetto oppure aggiungi il progetto al tuo IDE preferito e avvia un terminale. Esegui il comando 
 
 <pre><code>
 docker-compose up -d --build
 </code></pre>
 
-3. Visita le pagine: 
+oppure se hai a disposizione <em>make</em>
+<pre><code>
+make start
+</code></pre>
+
+
+1. Visita le pagine: 
 
 <pre><code>
 localhost #per avviare l'installazione di WordPress
