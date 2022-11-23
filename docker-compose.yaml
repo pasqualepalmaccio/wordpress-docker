@@ -9,6 +9,7 @@ services:
     volumes:
       - ./data/db:/var/lib/mysql
       - ./data/deploy/:/deploy
+      - ./data/backup/:/backup
     restart: always
     env_file:
       - ./.env
@@ -38,5 +39,6 @@ services:
       - ./data/files:/var/www/html
       - ./config/wordpress/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./data/deploy:/deploy
+      - ./data/backup:/backup
     env_file:
       - ./.env
