@@ -1,3 +1,4 @@
+include .env
 start:
 	docker-compose up -d
 stop:
@@ -7,5 +8,5 @@ build: stop
 
 deploy:
 	docker-compose exec wordpress bash -c "zip -r /deploy/wp.zip /var/www/html"
-	docker-compose exec db bash -c "mysqldump -u wordpress -pwordpress  wordpress > /deploy/wpdb.sql"
+	docker-compose exec db bash -c "mysqldump -u ${MYSQL_USER} -p${WORDPRESS_DB_PASSWORD}  ${MYSQL_DATABASE} > /deploy/wpdb.sql"
 	

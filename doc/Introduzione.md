@@ -1,5 +1,16 @@
 # Documentazione Wordpress + Docker in localhost
 
+#### Approfondimenti
+<ol>
+<li>
+<a href="/Modifica-versione-php.md">Modificare la versione di PHP del progetto</a>
+</li>
+<li>
+<a href="/Variabili-ambiente.md">Gestire le variabili d'ambiente</a>
+</li>
+</ol>
+
+## Introduzione
 Questo progetto contiene tutto il necessario per avviare lo sviluppo di un sito <b>WordPress</b> in locale tramite <b>Docker</b>.
 
 <strong>Docker</strong> è un software che consente di eseguire <em>containers</em>. 
