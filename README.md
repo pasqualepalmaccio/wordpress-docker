@@ -1,4 +1,6 @@
 # WordPress su Docker
+<small> Documentazione in <strong>italiano</strong></small>
+
 
 Questo progetto ha come scopo quello di fornire un boilerplate per lo sviluppo di un sito web realizzato con CMS WordPress in locale. Il progetto può facilmente essere caricato sul tuo server remoto. 
 
