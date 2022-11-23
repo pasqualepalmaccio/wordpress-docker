@@ -1,11 +1,14 @@
 version: '3'
 
 services:
+
   db:
     container_name: db
-    image: mariadb:latest
+    build:
+      context: ./config/db
     volumes:
       - ./data/db:/var/lib/mysql
+      - ./data/deploy/:/deploy
     restart: always
     env_file:
       - ./.env
@@ -34,5 +37,6 @@ services:
     volumes:
       - ./data/files:/var/www/html
       - ./config/wordpress/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./data/deploy:/deploy
     env_file:
       - ./.env
