@@ -20,7 +20,7 @@ make start
 </code></pre>
 
 
-1. Visita le pagine: 
+3. Visita le pagine: 
 
 <pre><code>
 localhost #per avviare l'installazione di WordPress
