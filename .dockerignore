@@ -1,0 +1,7 @@
+# Esclusione
+data/backup
+data/deploy
+doc
+.git
+makefile
+README.md
