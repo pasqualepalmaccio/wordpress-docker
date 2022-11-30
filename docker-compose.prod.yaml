@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./config/wordpress
+      target: prod
+      args:
+        - PHP_VERSION=$PHP_VERSION
+    ports:
+      - "80:80"
+    env_file:
+      - ./.env
