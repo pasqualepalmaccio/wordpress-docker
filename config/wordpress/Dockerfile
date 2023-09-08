@@ -5,7 +5,3 @@ RUN apt-get update && apt-get install -y zip unzip
 RUN mkdir deploy
 RUN mkdir backup
 
-
-FROM nginx:alpine as prod
-COPY ./data/files /var/www/html
-EXPOSE 80

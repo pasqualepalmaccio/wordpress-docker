@@ -3,7 +3,7 @@ version: '3'
 services:
 
   db:
-    container_name: db
+    container_name: wp_db
     build:
       context: ./config/db
     volumes:
@@ -15,7 +15,7 @@ services:
       - ./.env
 
   phpmyadmin:
-    container_name: phpmyadmin
+    container_name: wp_phpmyadmin
     image: phpmyadmin:latest
     env_file:
       - ./.env
@@ -25,7 +25,7 @@ services:
       - db
 
   wordpress:
-    container_name: wordpress
+    container_name: wp_wordpress
     build:
       context: ./config/wordpress
       args:
