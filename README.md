@@ -3,6 +3,8 @@
 
 
 Questo progetto ha come scopo quello di fornire un boilerplate per lo sviluppo di un sito web realizzato con CMS WordPress in locale. Il progetto può facilmente essere caricato sul tuo server remoto. 
+Se non hai ancora Docker installato sul tuo PC scaricalo ed installalo in base al tuo sistema operativo. 
+Ti lascio un link su dove puoi trovare docker: https://docs.docker.com/desktop/
 
 Se hai già installato Docker e Docker Compose ed hai già confidenza con questo strumento puoi semplicemente seguire questi step:
 
