@@ -1,44 +1,76 @@
-version: '3'
-
 services:
 
   db:
-    container_name: wp_db
     build:
-      context: ./config/db
+      context: ./config/mariadb
+    container_name: wp_mariadb
     volumes:
       - ./data/db:/var/lib/mysql
-      - ./data/deploy/:/deploy
       - ./data/backup/:/backup
+      - ./config/mariadb/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./config/setup:/config/setup
+      - ./data/import:/data/import
     restart: always
     env_file:
       - ./.env
 
-  phpmyadmin:
-    container_name: wp_phpmyadmin
-    image: phpmyadmin:latest
-    env_file:
-      - ./.env
-    ports:
-      - 8890:80
-    links:
-      - db
-
   wordpress:
-    container_name: wp_wordpress
     build:
       context: ./config/wordpress
       args:
         - PHP_VERSION=$PHP_VERSION
+    container_name: wordpress
     depends_on:
       - db
-    ports:
-      - "80:80"
+      - redis
     restart: always
     volumes:
       - ./data/files:/var/www/html
-      - ./config/wordpress/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./data/deploy:/deploy
+      - ./config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./config/apache/apache.conf:/etc/apache2/sites-available/000-default.conf
+      - ./config/php/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
+      - ./config/setup:/config/setup
       - ./data/backup:/backup
+      - ./data/import:/data/import
     env_file:
       - ./.env
+    ports:
+      - "${WORDPRESS_HTTP_PORT}:80"
+
+  redis:
+    image: redis:latest
+    container_name: wp_redis
+    restart: always
+    command: redis-server /etc/redis/redis.conf --appendonly yes
+    env_file:
+      - ./.env
+    volumes:
+      - ./data/redis:/data
+      - ./config/redis/redis.conf:/etc/redis/redis.conf
+    ports:
+      - "${REDIS_PORT}:6379"
+
+  varnish:
+    image: varnish:latest
+    container_name: wp_varnish
+    restart: always
+    depends_on:
+      - wordpress
+    volumes:
+      - ./config/varnish/default.vcl:/etc/varnish/default.vcl
+    env_file:
+      - ./.env
+    command: varnishd -F -a :6081 -T localhost:6082 -f /etc/varnish/default.vcl -s malloc,256M
+    ports:
+      - "${VARNISH_PORT}:6081"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    platform: linux/amd64
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    ports:
+      - "${PMA_PORT}:80"
