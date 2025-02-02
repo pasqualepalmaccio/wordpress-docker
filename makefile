@@ -1,15 +1,27 @@
 include .env
 
 start:
-	docker-compose up -d
+	@echo "🚀 Avvio del progetto WordPress con Docker..."
+	@docker compose up --build -d
+	@echo ""
+	@echo "📌 Vuoi importare un sito esistente o creare un nuovo WordPress?"
+	@echo "   1) Importare un sito esistente"
+	@echo "   2) Creare un nuovo sito da zero"
+	@echo ""
+	@read -p "📥 Inserisci 1 per importare, 2 per nuovo sito: " choice; \
+	if [ "$$choice" = "1" ]; then \
+		echo ""; \
+		echo "🛠 Per importare un sito esistente, posiziona i file in: "; \
+		echo "   - /data/import/wp-files.zip  (o wp-files.tar.gz) per i file di WordPress"; \
+		echo "   - /data/import/wp-database.sql per il dump del database"; \
+		echo ""; \
+		echo "📌 Una volta posizionati i file, esegui: make import-wordpress"; \
+	else \
+		echo "✅ Installazione completata. WordPress è pronto su ${SITE_URL}"; \
+	fi
+
 stop:
 	docker-compose down --remove-orphans
-build: stop 
-	docker-compose build
-
-deploy:
-	docker-compose exec wordpress bash -c "zip -r /deploy/wp.zip /var/www/html"
-	docker-compose exec db bash -c "mysqldump -u ${MYSQL_USER} -p${WORDPRESS_DB_PASSWORD}  ${MYSQL_DATABASE} > /deploy/wpdb.sql"
 
 # 📦 Backup completo (files + database)
 backup: backup-files backup-db
